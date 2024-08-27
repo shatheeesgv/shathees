@@ -12,17 +12,22 @@
    </head>
    <body>
       <div>
-         <h1>welcome to first page</h1>
+         <h1>welcome to form validation page</h1>
 
          <script>
               function display(){
                      alert("submited succesfully");
+                     var a=document.getElementById("one").value;
+                     var b=document.getElementById("two").value;
+                     document.write("name:"+a+"<br>");
+                     document.write("password:"+b+"<br>");
+                    
                }
 
          </script>
          <form>
                name:<input type="text" name="name" id="one"><br>
-               password:<input type="text" name="name" id="one"><br>
+               password:<input type="password" name="name" id="two"><br>
                <button type="submit"  onclick="display()" value="submit">submit</button> 
          </form>
       </div>
