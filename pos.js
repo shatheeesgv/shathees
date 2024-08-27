@@ -13,4 +13,3 @@ server.listen(PORT,(err)=>{
         console.log("server running in "+PORT);
     }
 })
-console.log(path.dirname(__filename));
