@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Microblogging App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4; /* Light gray background for the whole page */
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    }
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: #fff; /* White background for main content */
+      border-radius: 8px; /* Rounded corners */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    }
+    #login-form, #user-dashboard {
+      margin-bottom: 2rem;
+    }
+    h2 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      border-bottom: 2px solid #333; /* Underline for section titles */
+      padding-bottom: 0.5rem;
+    }
+    input, textarea, button {
+      display: block;
+      width: 100%;
+      margin: 0.5rem 0; 
+      padding: 0.8rem;
+      border-radius: 4px; /* Rounded corners for inputs and buttons */
+      border: 1px solid #ddd; /* Light gray border for inputs */
+    }
+    input:focus, textarea:focus, button:focus {
+      border-color: #333; /* Darker border on focus */
+      outline: none; /* Remove default outline */
+    }
+    textarea {
+      height: 150px; /* Fixed height for textarea */
+      resize: vertical; /* Allow vertical resizing only */
+    }
+    button {
+      background-color: #333;
+      color: #fff;
+      border: none; 
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease; /* Smooth transition for background color */
+    }
+    button:hover {
+      background-color: #555; /* Lighter background on hover */
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      border: 1px solid #ddd;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 4px; /* Rounded corners for list items */
+      background-color: #f9f9f9; /* Slightly gray background for posts */
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    li p {
+      margin: 0;
+    }
+    .like-btn {
+      background-color: #007bff; /* Blue background for like button */
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .like-btn:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+    }
+    .like-count {
+      font-size: 0.9rem;
+      margin-left: 0.5rem;
+      color: #666; /* Gray color for like count */
+    }
+    @media (max-width: 600px) {
+      main {
+        padding: 1rem;
+      }
+      textarea {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <marquee><h1>Microblogging App</h1></marquee>
+  </header>
+  <main>
+    <div id="login-form">
+      <h2>Login</h2>
+      <input type="text" id="username" placeholder="Username">
+      <button id="login-btn">Login</button>
+    </div>
+    <div id="user-dashboard" style="display: none;">
+      <h2>Welcome, <span id="user-username"></span>!</h2>
+      <textarea id="post-content" placeholder="Write your post..."></textarea>
+      <button id="post-btn">Post</button>
+    </div>
+    <div id="feed">
+      <h2>Feed</h2>
+      <ul id="post-list"></ul>
+    </div>
+  </main>
+  
+  <script>
+    const loginForm = document.getElementById('login-form'); 
+    const usernameInput = document.getElementById('username');
+    const loginButton = document.getElementById('login-btn');
+    const userDashboard = document.getElementById('user-dashboard');
+    const userUsername = document.getElementById('user-username'); 
+    const postContent = document.getElementById('post-content'); 
+    const postButton = document.getElementById('post-btn');
+    const postList = document.getElementById('post-list');
+    let currentUser = null;
+    
+    // Event listener for login button 
+    loginButton.addEventListener('click', () => {
+      const username = usernameInput.value.trim();
+      if (username !== '') {
+        currentUser = username; 
+        loginForm.style.display = 'none'; 
+        userDashboard.style.display = 'block'; 
+        userUsername.textContent = username;
+        loadPosts();
+      }
+    });
+
+    // Event listener for post button 
+    postButton.addEventListener('click', () => {
+      const content = postContent.value.trim();
+      if (content !== '') {
+        const post = {
+          username: currentUser,
+          content: content,
+          likes: 0 // Initialize likes count
+        };
+        savePost(post); 
+        postContent.value = '';
+        loadPosts();
+      }
+    });
+
+    // Save post to local storage
+    function savePost(post) {
+      let posts = JSON.parse(localStorage.getItem('posts')) || [];
+      posts.push(post);
+      localStorage.setItem('posts', JSON.stringify(posts));
+    }
+
+    // Load posts from local storage
+    function loadPosts() {
+      postList.innerHTML = '';
+      const posts = JSON.parse(localStorage.getItem('posts')) || [];
+      posts.forEach((post, index) => {
+        const postItem = document.createElement('li');
+        postItem.innerHTML = `
+          <p><strong>${post.username}</strong>: ${post.content}</p>
+          <div>
+            <button class="like-btn" data-index="${index}">Like</button>
+            <span class="like-count">${post.likes || 0} likes</span>
+          </div>
+        `; 
+        postList.appendChild(postItem);
+      });
+
+      // Attach event listeners to like buttons
+      document.querySelectorAll('.like-btn').forEach(button => {
+        button.addEventListener('click', (event) => {
+          const index = event.target.getAttribute('data-index');
+          likePost(index);
+        });
+      });
+    }
+
+    // Increment likes count for a post
+    function likePost(index) {
+      let posts = JSON.parse(localStorage.getItem('posts')) || [];
+      posts[index].likes = (posts[index].likes || 0) + 1;
+      localStorage.setItem('posts', JSON.stringify(posts));
+      loadPosts();
+    }
+
+    // Initial setup
+    if (localStorage.getItem('posts') === null) {
+      localStorage.setItem('posts', JSON.stringify([]));
+    }
+  </script>
+</body>
+</html>
