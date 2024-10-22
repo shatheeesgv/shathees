@@ -2,54 +2,47 @@
   <head>
     <style>
       body {
-        background: linear-gradient(to right, #e0eafc, #cfdef3); /* Gradient background */
-        font-family: 'Arial', sans-serif; /* Clean font */
         margin: 0; /* Remove default margins */
-        padding: 50px; /* Add padding around the body */
+        padding: 0; /* Remove default padding */
+        height: 100vh; /* Full viewport height */
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh; /* Full viewport height */
+        background: url('https://source.unsplash.com/random/1920x1080') no-repeat center center fixed; /* Background image */
+        background-size: cover; /* Cover the entire background */
+        font-family: 'Arial', sans-serif; /* Clean font */
+        color: white; /* Default text color */
       }
 
       .container {
-        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.15); /* Enhanced shadow for depth */
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5); /* Enhanced shadow for depth */
         padding: 40px; /* Padding inside the container */
-        background-color: white; /* White background for contrast */
-        border-radius: 20px; /* More pronounced rounded corners */
-        transition: transform 0.3s, box-shadow 0.3s; /* Animation effects */
+        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+        border-radius: 20px; /* Rounded corners */
         max-width: 400px; /* Max width for container */
         text-align: center; /* Center text */
-        border: 1px solid #dcdcdc; /* Subtle border */
-      }
-
-      .container:hover {
-        transform: translateY(-10px); /* Lift effect on hover */
-        box-shadow: 0 15px 70px rgba(0, 0, 0, 0.25); /* More pronounced shadow on hover */
+        position: relative; /* Positioning for animation */
       }
 
       h1 {
         font-size: 36px; /* Larger main heading */
-        color: #4a90e2; /* Blue color for heading */
         margin: 10px 0; /* Margin around heading */
       }
 
       h2 {
         font-size: 24px; /* Larger subheading */
-        color: #7f8c8d; /* Gray color for subheading */
         margin: 5px 0; /* Margin around subheading */
       }
 
       p {
         font-size: 18px; /* Font size for additional text */
-        color: #34495e; /* Dark gray color */
         margin: 15px 0; /* Margin around the paragraph */
         line-height: 1.6; /* Improve readability */
       }
 
       a {
         font-size: 20px; /* Font size for links */
-        color: #ffffff; /* White text color */
+        color: white; /* White text color */
         background-color: #2980b9; /* Primary button color */
         text-decoration: none; /* Remove underline */
         padding: 12px 20px; /* Padding for links */
@@ -64,11 +57,9 @@
         transform: translateY(-3px); /* Slight lift effect on hover */
       }
 
-      /* Adding a footer */
       footer {
         margin-top: 20px; /* Margin above the footer */
         font-size: 14px; /* Smaller font size */
-        color: #7f8c8d; /* Gray color */
       }
 
       /* Responsive design */
