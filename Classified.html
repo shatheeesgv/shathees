@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classifieds: Buy & Sell Used Products</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #90ee90; /* Light green */
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #ff69b4; /* Pink */
+            padding: 15px 20px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #ff1493; /* Darker pink */
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: bold;
+        }
+
+        /* Search bar and Category filters */
+        .search-bar {
+            background-color: #f0f0f0;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-bar input, .search-bar select, .search-bar button {
+            padding: 10px;
+            font-size: 16px;
+            margin-right: 10px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+        }
+
+        .search-bar button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-bar button:hover {
+            background-color: #218838;
+        }
+
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+            justify-content: center;
+        }
+
+        .product-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin: 15px;
+            width: 220px;
+            height: auto;
+            padding: 15px;
+            box-shadow: 1px 1px 2px 4px aqua;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 120px; 
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px; 
+        }
+
+        .product-card h3 {
+            font-size: 18px;
+            margin: 10px 0;
+            text-align: center; 
+        }
+
+        .product-card p {
+            font-size: 14px;
+            margin: 5px 0;
+            text-align: center; 
+        }
+
+        .product-card .price {
+            color: green;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .product-card button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+            margin-top: auto; 
+            transition: background-color 0.3s;
+        }
+
+        .product-card button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal input, .modal select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 10px 0;
+            font-size: 16px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+        }
+
+        .modal button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .modal button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1 style="color:#432657">Classified Web Application - Buy and Sell Used Products</h1>
+        <nav>
+            <a href="#" onclick="toggleLogin()">Login/Register</a>
+        </nav>
+    </header>
+
+    <!-- Search bar -->
+    <div class="search-bar">
+        <input type="text" id="search-bar" placeholder="Search for products...">
+        <select id="category-filter" onchange="searchProducts()">
+            <option value="all">All Categories</option>
+            <option value="electronics">Electronics</option>
+            <option value="cars">Cars</option>
+            <option value="home">Home Appliances</option>
+            <option value="clothing">Clothing</option>
+            <option value="footwear">Footwear</option>
+            <option value="furniture">Furniture</option>
+            <option value="sports">Sports Equipment</option>
+        </select>
+        <input type="number" id="min-price" placeholder="Min Price" onchange="searchProducts()">
+        <input type="number" id="max-price" placeholder="Max Price" onchange="searchProducts()">
+        <button onclick="searchProducts()">Search</button>
+    </div>
+
+    <!-- Product List -->
+    <section class="product-list" id="product-list">
+        <!-- Sample Products -->
+        <div class="product-card" data-category="electronics">
+            <img src="https://p3-ofp.static.pub//fes/cms/2024/05/17/t7s0iw77gpx1asifnfouhk4y23pvh0503560.png" alt="iPhone">
+            <h3>lenovo laptop</h3>
+            <p class="price">$249</p>
+            <p>Used, excellent condition</p>
+            <button onclick="buyProduct('iPhone')">Buy</button>
+        </div>
+
+        <div class="product-card" data-category="cars">
+            <img src="https://th.bing.com/th/id/OIP.4jVVrJR5pYIy60_2m6OfngHaEK?rs=1&pid=ImgDetMain" alt="Car">
+            <h3>jaguvar Car</h3>
+            <p class="price">$40,600</p>
+            <p>2017 model, used</p>
+            <button onclick="buyProduct('Car')">Buy</button>
+        </div>
+
+        <div class="product-card" data-category="clothing">
+            <img src="https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F5e%2F20%2F5e2009a3b7cf5c6dbc6c121508bffc7400bb595b.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B2%5D&call=url[file:/product/main]" alt="Jacket">
+            <h3>Jacket</h3>
+            <p class="price">$80</p>
+            <p>Black, medium size, like new</p>
+            <button onclick="buyProduct('Jacket')">Buy</button>
+        </div>
+
+        <div class="product-card" data-category="footwear">
+            <img src="https://happygentleman.com/wp-content/uploads/2019/11/80058-6-mens-shoes-black2.jpg" alt="Shoes">
+            <h3>Shoes</h3>
+            <p class="price">$100</p>
+            <p>Size 10, used, good condition</p>
+            <button onclick="buyProduct('Shoes')">Buy</button>
+        </div>
+
+        <div class="product-card" data-category="electronics">
+            <img src="https://th.bing.com/th/id/OIP.c41oURuONapufZfM7ep23AHaHa?rs=1&pid=ImgDetMain" alt="TV">
+            <h3>TV</h3>
+            <p class="price">$600</p>
+            <p>Used, great picture quality</p>
+            <button onclick="buyProduct('TV')">Buy</button>
+        </div>
+
+        <div class="product-card" data-category="cars">
+            <img src="https://via.placeholder.com/220x150" alt="Toyota">
+            <h3>Toyota</h3>
+            <p class="price">$18,000</p>
+            <p>Used, excellent condition</p>
+            <button onclick="buyProduct('Toyota')">Buy</button>
+        </div>
+
+        <div class="product-card" data-category="furniture">
+            <img src="https://via.placeholder.com/220x150" alt="Dining Table">
+            <h3>Dining Table</h3>
+            <p class="price">$250</p>
+            <p>Solid wood, like new</p>
+            <button onclick="buyProduct('Dining Table')">Buy</button>
+        </div>
+
+        <div class="product-card" data-category="sports">
+            <img src="https://via.placeholder.com/220x150" alt="Bike">
+            <h3>Bike</h3>
+            <p class="price">$400</p>
+            <p>Used, excellent condition</p>
+            <button onclick="buyProduct('Bike')">Buy</button>
+        </div>
+
+        <div class="product-card" data-category="home">
+            <img src="https://via.placeholder.com/220x150" alt="Blender">
+            <h3>Blender</h3>
+            <p class="price">$60</p>
+            <p>Used, great for smoothies</p>
+            <button onclick="buyProduct('Blender')">Buy</button>
+        </div>
+
+        <div class="product-card" data-category="electronics">
+            <img src="https://via.placeholder.com/220x150" alt="Speaker">
+            <h3>Speaker</h3>
+            <p class="price">$45</p>
+            <p>Used, good condition</p>
+            <button onclick="buyProduct('Speaker')">Buy</button>
+        </div>
+
+        <div class="product-card" data-category="clothing">
+            <img src="https://via.placeholder.com/220x150" alt="T-Shirt">
+            <h3>T-Shirt</h3>
+            <p class="price">$20</p>
+            <p>Size L, new with tags</p>
+            <button onclick="buyProduct('T-Shirt')">Buy</button>
+        </div>
+    </section>
+
+    <!-- Buy Modal -->
+    <div id="buyModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Buy Product</h2>
+            <p id="modal-product-name"></p>
+            <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <input type="text" placeholder="Your Address" required>
+            <button onclick="confirmPurchase()">Confirm Purchase</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        var modal = document.getElementById("buyModal");
+        var span = document.getElementsByClassName("close")[0];
+        var modalProductName = document.getElementById("modal-product-name");
+
+        function buyProduct(productName) {
+            modal.style.display = "block";
+            modalProductName.textContent = "You are buying: " + productName;
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function confirmPurchase() {
+            alert("The order has been submitted successfully!");
+            modal.style.display = "none"; // Close the modal after submission
+        }
+
+        // Product Search Functionality
+        function searchProducts() {
+            const input = document.getElementById("search-bar").value.toLowerCase();
+            const category = document.getElementById("category-filter").value;
+            const minPrice = parseFloat(document.getElementById("min-price").value) || 0;
+            const maxPrice = parseFloat(document.getElementById("max-price").value) || Infinity;
+            const products = document.getElementsByClassName("product-card");
+
+            for (let i = 0; i < products.length; i++) {
+                const productName = products[i].getElementsByTagName("h3")[0].textContent.toLowerCase();
+                const productCategory = products[i].getAttribute("data-category");
+                const productPrice = parseFloat(products[i].getElementsByClassName("price")[0].textContent.replace(/[^0-9.-]+/g, ""));
+
+                if ((category === "all" || productCategory === category) &&
+                    productName.includes(input) &&
+                    productPrice >= minPrice && productPrice <= maxPrice) {
+                    products[i].style.display = "block";
+                } else {
+                    products[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
