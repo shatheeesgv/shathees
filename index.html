@@ -1,109 +1,136 @@
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Attractive Homepage</title>
     <style>
-      body {
-        margin: 0; /* Remove default margins */
-        padding: 0; /* Remove default padding */
-        height: 100vh; /* Full viewport height */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: linear-gradient(to right, #e0eafc, #cfdef3); /* Soft gradient background */
-        font-family: 'Arial', sans-serif; /* Clean font */
-        color: white; /* Default text color */
-      }
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background */
+            font-family: 'Arial', sans-serif;
+            color: white;
+            overflow: hidden;
+        }
 
-      .container {
-        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5); /* Enhanced shadow for depth */
-        padding: 40px; /* Padding inside the container */
-        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-        border-radius: 20px; /* Rounded corners */
-        max-width: 400px; /* Max width for container */
-        text-align: center; /* Center text */
-        position: relative; /* Positioning for animation */
-      }
-
-      .shadow-bg {
-        position: absolute; /* Position the background shadow */
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.3); /* Shadow color */
-        border-radius: 20px; /* Match container's border radius */
-        z-index: -1; /* Place behind the container */
-      }
-
-      h1 {
-        font-size: 36px; /* Larger main heading */
-        margin: 10px 0; /* Margin around heading */
-      }
-
-      h2 {
-        font-size: 24px; /* Larger subheading */
-        margin: 5px 0; /* Margin around subheading */
-      }
-
-      p {
-        font-size: 18px; /* Font size for additional text */
-        margin: 15px 0; /* Margin around the paragraph */
-        line-height: 1.6; /* Improve readability */
-      }
-
-      a {
-        font-size: 20px; /* Font size for links */
-        color: white; /* White text color */
-        background-color: #2980b9; /* Primary button color */
-        text-decoration: none; /* Remove underline */
-        padding: 12px 20px; /* Padding for links */
-        display: inline-block; /* Make links block elements */
-        margin: 10px 0; /* Margin between links */
-        border-radius: 5px; /* Rounded corners */
-        transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
-      }
-
-      a:hover {
-        background-color: #3498db; /* Lighter blue on hover */
-        transform: translateY(-3px); /* Slight lift effect on hover */
-      }
-
-      footer {
-        margin-top: 20px; /* Margin above the footer */
-        font-size: 14px; /* Smaller font size */
-      }
-
-      /* Responsive design */
-      @media (max-width: 600px) {
         .container {
-          width: 90%; /* Make container responsive */
+            position: relative;
+            max-width: 450px;
+            width: 100%;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.9); /* Darker semi-transparent background */
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+            text-align: center;
+            animation: fadeIn 1s ease-in; /* Fade in animation */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         h1 {
-          font-size: 28px; /* Smaller heading on mobile */
+            font-size: 36px;
+            margin: 10px 0;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5); /* Enhanced text shadow */
         }
 
         h2 {
-          font-size: 20px; /* Smaller subheading on mobile */
+            font-size: 24px;
+            margin: 5px 0;
+            animation: slideIn 0.5s ease-in-out; /* Slide in effect for subheading */
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+            margin: 15px 0;
+            animation: fadeIn 0.5s ease-in-out; /* Fade in effect for paragraphs */
         }
 
         a {
-          font-size: 18px; /* Smaller link font size on mobile */
+            font-size: 18px;
+            color: white;
+            background: #ff6a00; /* Button color */
+            padding: 12px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.3s, box-shadow 0.3s; /* Smooth transitions */
+            display: inline-block;
+            margin: 10px 0;
+            position: relative; /* For pseudo-element */
+            overflow: hidden; /* Contain pseudo-elements */
         }
-      }
+
+        a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 3px; /* Underline effect */
+            background: #ff8c00; /* Underline color */
+            transform: translateY(100%); /* Start hidden */
+            transition: transform 0.3s; /* Smooth underline effect */
+        }
+
+        a:hover {
+            background: #ff8c00; /* Button hover color */
+            transform: translateY(-3px); /* Lift effect */
+        }
+
+        a:hover::before {
+            transform: translateY(0); /* Show underline on hover */
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            opacity: 0.8; /* Slightly transparent */
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            a {
+                font-size: 16px;
+            }
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="container">
-      <div class="shadow-bg"></div> <!-- Background shadow color -->
-      <h1>Home</h1>
-      <h2>FSWD Lab</h2>
-      <p>Name: Shathees Gv</p>
-      <p>Registration Number: 810022205089</p>
-      <a id="hi" href="portfolio.html">Portfolio</a><br>
-      <a id="ap" href="new2micro.html">Micro</a><br>
-      <a id="op" href="index2.html">To-Do List</a><br>
-      <a href="index10.html">Food App</a>
-      <footer>© 2024 Shathees Gv</footer> <!-- Footer for credits -->
+        <h1>Welcome to My Homepage</h1>
+        <h2>FSWD Lab</h2>
+        <p>Name: Shathees Gv</p>
+        <p>Registration Number: 810022205089</p>
+        <a id="hi" href="portfolio.html">View Portfolio</a>
+        <a id="ap" href="new2micro.html">Micro Projects</a>
+        <a id="op" href="index2.html">To-Do List</a>
+        <a href="index10.html">Food App</a>
+        <footer>© 2024 Shathees Gv</footer>
     </div>
-  </body>
+</body>
 </html>
