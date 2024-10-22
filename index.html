@@ -1,45 +1,92 @@
 <html>
   <head>
     <style>
-    fieldset{
-      box-shadow:2px 1px 3px 5px aqua;
-      width:250;
-      height:250;
-      text-align:center;
-      background-color:silver;
-    }
-      a{
-         font-size:25;
+      body {
+        background: linear-gradient(to right, #e0eafc, #cfdef3); /* Gradient background */
+        font-family: 'Arial', sans-serif; /* Clean font */
+        margin: 0; /* Remove default margins */
+        padding: 50px; /* Add padding around the body */
+        text-align: center; /* Center text */
       }
-     
-   
+
+      .container {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow for the container */
+        padding: 30px; /* Padding inside the container */
+        background-color: white; /* White background for contrast */
+        border-radius: 15px; /* Rounded corners */
+        transition: transform 0.3s; /* Animation effect */
+      }
+
+      .container:hover {
+        transform: translateY(-5px); /* Lift effect on hover */
+      }
+
+      h1 {
+        font-size: 32px; /* Larger main heading */
+        color: #4a90e2; /* Blue color for heading */
+        margin: 10px 0; /* Margin around heading */
+      }
+
+      h2 {
+        font-size: 24px; /* Larger subheading */
+        color: #7f8c8d; /* Gray color for subheading */
+        margin: 5px 0; /* Margin around subheading */
+      }
+
+      p {
+        font-size: 18px; /* Font size for additional text */
+        color: #34495e; /* Dark gray color */
+        margin: 20px 0; /* Margin around the paragraph */
+      }
+
+      a {
+        font-size: 20px; /* Font size for links */
+        color: #2980b9; /* Change link color */
+        text-decoration: none; /* Remove underline */
+        padding: 10px 20px; /* Padding for links */
+        display: inline-block; /* Make links block elements */
+        margin: 10px 0; /* Margin between links */
+        border: 2px solid transparent; /* Border for hover effect */
+        border-radius: 5px; /* Rounded corners */
+        transition: background-color 0.3s, border-color 0.3s; /* Smooth transitions */
+      }
+
+      a:hover {
+        background-color: #2980b9; /* Background color on hover */
+        color: white; /* Change text color on hover */
+        border-color: #1c5980; /* Darker border on hover */
+      }
+
+      /* Responsive design */
+      @media (max-width: 600px) {
+        .container {
+          width: 90%; /* Make container responsive */
+        }
+
+        h1 {
+          font-size: 28px; /* Smaller heading on mobile */
+        }
+
+        h2 {
+          font-size: 20px; /* Smaller subheading on mobile */
+        }
+
+        a {
+          font-size: 18px; /* Smaller link font size on mobile */
+        }
+      }
     </style>
   </head>
   <body>
-    <div>
-    
-          <center>
-        
-            <fieldset>
-                 <h1>Home<h1>
-                  <h2>fswd lab</h2>
-               <a id="hi" href="portfolio.html">portfolio</a><br>
-               <a id="ap" href="new2micro.html">micro</a><br>
-               <a id="op" href="index2.html">to-do list</a><br>
-               <a  href="index10.html">Food app</a>
-            </fieldset>
-        
-      </center>
-
-    
-     
-
-      
+    <div class="container">
+      <h1>Home</h1>
+      <h2>FSWD Lab</h2>
+      <p>Name: Shathees Gv</p>
+      <p>Registration Number: 810022205089</p>
+      <a id="hi" href="portfolio.html">Portfolio</a><br>
+      <a id="ap" href="new2micro.html">Micro</a><br>
+      <a id="op" href="index2.html">To-Do List</a><br>
+      <a href="index10.html">Food App</a>
     </div>
-    
-    
-    
   </body>
- 
-  
 </html>
