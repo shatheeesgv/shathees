@@ -8,8 +8,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background: url('https://source.unsplash.com/random/1920x1080') no-repeat center center fixed; /* Background image */
-        background-size: cover; /* Cover the entire background */
+        background: linear-gradient(to right, #e0eafc, #cfdef3); /* Soft gradient background */
         font-family: 'Arial', sans-serif; /* Clean font */
         color: white; /* Default text color */
       }
@@ -22,6 +21,17 @@
         max-width: 400px; /* Max width for container */
         text-align: center; /* Center text */
         position: relative; /* Positioning for animation */
+      }
+
+      .shadow-bg {
+        position: absolute; /* Position the background shadow */
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.3); /* Shadow color */
+        border-radius: 20px; /* Match container's border radius */
+        z-index: -1; /* Place behind the container */
       }
 
       h1 {
@@ -84,6 +94,7 @@
   </head>
   <body>
     <div class="container">
+      <div class="shadow-bg"></div> <!-- Background shadow color -->
       <h1>Home</h1>
       <h2>FSWD Lab</h2>
       <p>Name: Shathees Gv</p>
