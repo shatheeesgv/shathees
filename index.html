@@ -3,31 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced Attractive Homepage</title>
+    <title>Fluid Layout Homepage</title>
     <style>
         body {
             margin: 0;
             padding: 0;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            background: linear-gradient(to bottom right, #6a11cb, #2575fc);
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background */
-            font-family: 'Arial', sans-serif;
-            color: white;
-            overflow: hidden;
+            text-align: center;
+            position: relative;
         }
 
-        .container {
-            position: relative;
-            max-width: 450px;
-            width: 100%;
-            padding: 40px;
-            background: rgba(0, 0, 0, 0.9); /* Darker semi-transparent background */
+        /* Hero section */
+        .hero {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7); /* Dark overlay */
             border-radius: 15px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
-            text-align: center;
-            animation: fadeIn 1s ease-in; /* Fade in animation */
+            animation: fadeIn 1s ease-in;
         }
 
         @keyframes fadeIn {
@@ -36,15 +43,15 @@
         }
 
         h1 {
-            font-size: 36px;
+            font-size: 48px;
             margin: 10px 0;
-            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5); /* Enhanced text shadow */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
         }
 
         h2 {
-            font-size: 24px;
+            font-size: 30px;
             margin: 5px 0;
-            animation: slideIn 0.5s ease-in-out; /* Slide in effect for subheading */
+            animation: slideIn 0.5s ease-in-out;
         }
 
         @keyframes slideIn {
@@ -53,24 +60,23 @@
         }
 
         p {
-            font-size: 18px;
+            font-size: 20px;
             line-height: 1.5;
             margin: 15px 0;
-            animation: fadeIn 0.5s ease-in-out; /* Fade in effect for paragraphs */
         }
 
         a {
-            font-size: 18px;
+            font-size: 20px;
             color: white;
-            background: #ff6a00; /* Button color */
+            background: #ff6a00;
             padding: 12px 20px;
             border-radius: 5px;
             text-decoration: none;
-            transition: background 0.3s, transform 0.3s, box-shadow 0.3s; /* Smooth transitions */
+            transition: background 0.3s, transform 0.3s;
             display: inline-block;
             margin: 10px 0;
-            position: relative; /* For pseudo-element */
-            overflow: hidden; /* Contain pseudo-elements */
+            position: relative;
+            overflow: hidden;
         }
 
         a::before {
@@ -79,49 +85,46 @@
             left: 0;
             right: 0;
             bottom: 0;
-            height: 3px; /* Underline effect */
-            background: #ff8c00; /* Underline color */
-            transform: translateY(100%); /* Start hidden */
-            transition: transform 0.3s; /* Smooth underline effect */
+            height: 3px;
+            background: #ff8c00;
+            transform: translateY(100%);
+            transition: transform 0.3s;
         }
 
         a:hover {
-            background: #ff8c00; /* Button hover color */
-            transform: translateY(-3px); /* Lift effect */
+            background: #ff8c00;
+            transform: translateY(-3px);
         }
 
         a:hover::before {
-            transform: translateY(0); /* Show underline on hover */
+            transform: translateY(0);
         }
 
         footer {
             margin-top: 20px;
-            font-size: 14px;
-            opacity: 0.8; /* Slightly transparent */
+            font-size: 16px;
+            opacity: 0.8;
         }
 
         /* Responsive design */
         @media (max-width: 600px) {
-            .container {
-                padding: 20px;
-            }
-
             h1 {
-                font-size: 28px;
+                font-size: 36px;
             }
-
             h2 {
-                font-size: 20px;
+                font-size: 24px;
             }
-
+            p {
+                font-size: 18px;
+            }
             a {
-                font-size: 16px;
+                font-size: 18px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="hero">
         <h1>Welcome to My Homepage</h1>
         <h2>FSWD Lab</h2>
         <p>Name: Shathees Gv</p>
