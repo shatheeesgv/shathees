@@ -6,23 +6,30 @@
         font-family: 'Arial', sans-serif; /* Clean font */
         margin: 0; /* Remove default margins */
         padding: 50px; /* Add padding around the body */
-        text-align: center; /* Center text */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Full viewport height */
       }
 
       .container {
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow for the container */
-        padding: 30px; /* Padding inside the container */
+        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.15); /* Enhanced shadow for depth */
+        padding: 40px; /* Padding inside the container */
         background-color: white; /* White background for contrast */
-        border-radius: 15px; /* Rounded corners */
-        transition: transform 0.3s; /* Animation effect */
+        border-radius: 20px; /* More pronounced rounded corners */
+        transition: transform 0.3s, box-shadow 0.3s; /* Animation effects */
+        max-width: 400px; /* Max width for container */
+        text-align: center; /* Center text */
+        border: 1px solid #dcdcdc; /* Subtle border */
       }
 
       .container:hover {
-        transform: translateY(-5px); /* Lift effect on hover */
+        transform: translateY(-10px); /* Lift effect on hover */
+        box-shadow: 0 15px 70px rgba(0, 0, 0, 0.25); /* More pronounced shadow on hover */
       }
 
       h1 {
-        font-size: 32px; /* Larger main heading */
+        font-size: 36px; /* Larger main heading */
         color: #4a90e2; /* Blue color for heading */
         margin: 10px 0; /* Margin around heading */
       }
@@ -36,25 +43,32 @@
       p {
         font-size: 18px; /* Font size for additional text */
         color: #34495e; /* Dark gray color */
-        margin: 20px 0; /* Margin around the paragraph */
+        margin: 15px 0; /* Margin around the paragraph */
+        line-height: 1.6; /* Improve readability */
       }
 
       a {
         font-size: 20px; /* Font size for links */
-        color: #2980b9; /* Change link color */
+        color: #ffffff; /* White text color */
+        background-color: #2980b9; /* Primary button color */
         text-decoration: none; /* Remove underline */
-        padding: 10px 20px; /* Padding for links */
+        padding: 12px 20px; /* Padding for links */
         display: inline-block; /* Make links block elements */
         margin: 10px 0; /* Margin between links */
-        border: 2px solid transparent; /* Border for hover effect */
         border-radius: 5px; /* Rounded corners */
-        transition: background-color 0.3s, border-color 0.3s; /* Smooth transitions */
+        transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
       }
 
       a:hover {
-        background-color: #2980b9; /* Background color on hover */
-        color: white; /* Change text color on hover */
-        border-color: #1c5980; /* Darker border on hover */
+        background-color: #3498db; /* Lighter blue on hover */
+        transform: translateY(-3px); /* Slight lift effect on hover */
+      }
+
+      /* Adding a footer */
+      footer {
+        margin-top: 20px; /* Margin above the footer */
+        font-size: 14px; /* Smaller font size */
+        color: #7f8c8d; /* Gray color */
       }
 
       /* Responsive design */
@@ -87,6 +101,7 @@
       <a id="ap" href="new2micro.html">Micro</a><br>
       <a id="op" href="index2.html">To-Do List</a><br>
       <a href="index10.html">Food App</a>
+      <footer>© 2024 Shathees Gv</footer> <!-- Footer for credits -->
     </div>
   </body>
 </html>
